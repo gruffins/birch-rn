@@ -1,6 +1,8 @@
 import { NativeModules, Platform } from 'react-native';
 import { emailScrubber, passwordScrubber, type Scrubber } from './scrubber';
 
+export { emailScrubber, passwordScrubber, type Scrubber } from './scrubber';
+
 const LINKING_ERROR =
   `The package 'react-native-birch' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
