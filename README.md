@@ -50,7 +50,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    Birch.identifier = userId
+    Birch.setIdentifier(userId);
   }, [userId]);
 }
 ``` 
@@ -77,7 +77,7 @@ Birch.setConsole(true);
 ```
 
 ```typescript
-const useConsole = await Birch.console();
+const useConsole = await Birch.getConsole();
 ```
 
 ### Remote
@@ -88,7 +88,7 @@ Birch.setRemote(true);
 ```
 
 ```typescript
-const remote = await Birch.remote()
+const remote = await Birch.getRemote()
 ```
 
 ### Level
@@ -99,7 +99,7 @@ Birch.setLevel(Level.Trace)
 ```
 
 ```typescript
-const level = await Birch.level();
+const level = await Birch.getLevel();
 ```
 
 ### Synchronous
@@ -110,7 +110,7 @@ Birch.setSynchronous(true);
 ```
 
 ```typescript
-const sync = await Birch.synchronous();
+const sync = await Birch.getSynchronous();
 ```
 
 ### Debug
@@ -123,7 +123,7 @@ Birch.setDebug(true);
 ```
 
 ```typescript
-const debug = await Birch.debug();
+const debug = await Birch.getDebug();
 ```
 
 ### Encryption
@@ -152,6 +152,10 @@ To comply with different sets of regulations such as GDPR or CCPA, you may be re
 
 ```typescript
 Birch.setOptOut(true);
+```
+
+```typescript
+const optOut = await Birch.getOptOut();
 ```
 
 ### Log Scrubbing

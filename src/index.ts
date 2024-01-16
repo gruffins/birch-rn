@@ -45,46 +45,46 @@ function Birch() {
   let scrubbers: Array<Scrubber> = [];
 
   const obj = {
-    debug: async (): Promise<boolean> => {
+    getDebug: async (): Promise<boolean> => {
       return await RNBirch.debug();
     },
     setDebug: (value: boolean) => {
       RNBirch.setDebug(value);
     },
-    optOut: async (): Promise<boolean> => {
+    getOptOut: async (): Promise<boolean> => {
       return await RNBirch.optOut();
     },
     setOptOut: (value: boolean) => {
       RNBirch.setOptOut(value);
     },
-    uuid: async (): Promise<string> => {
+    getUuid: async (): Promise<string> => {
       return await RNBirch.uuid();
     },
-    identifier: async (): Promise<string> => {
+    getIdentifier: async (): Promise<string> => {
       return await RNBirch.identifier();
     },
     setIdentifier: (value?: string) => {
       RNBirch.setIdentifier(value);
     },
-    customProperties: async (): Promise<Record<string, string>> => {
+    getCustomProperties: async (): Promise<Record<string, string>> => {
       return await RNBirch.customProperties();
     },
     setCustomProperties: (value: Record<string, string>) => {
       RNBirch.setCustomProperties(value);
     },
-    console: async (): Promise<boolean> => {
+    getConsole: async (): Promise<boolean> => {
       return await RNBirch.console();
     },
     setConsole: (value: boolean) => {
       RNBirch.setConsole(value);
     },
-    remote: async (): Promise<boolean> => {
+    getRemote: async (): Promise<boolean> => {
       return await RNBirch.remote();
     },
     setRemote: (value: boolean) => {
       RNBirch.setRemote(value);
     },
-    level: async (): Promise<Level | undefined> => {
+    getLevel: async (): Promise<Level | undefined> => {
       const level = await RNBirch.level();
       return level !== undefined ? (level as Level) : undefined;
     },
@@ -95,11 +95,11 @@ function Birch() {
         RNBirch.setLevel(value as number);
       }
     },
-    currentLevel: async (): Promise<Level | undefined> => {
+    getCurrentLevel: async (): Promise<Level | undefined> => {
       const level = await RNBirch.currentLevel();
       return level !== undefined ? (level as Level) : undefined;
     },
-    synchronous: async (): Promise<boolean> => {
+    getSynchronous: async (): Promise<boolean> => {
       return await RNBirch.synchronous();
     },
     setSynchronous: (value: boolean) => {
@@ -163,8 +163,8 @@ function Birch() {
   };
 
   const log = async (level: Level, message: string) => {
-    const current = await obj.currentLevel();
-    const allowConsole = await obj.console();
+    const current = await obj.getCurrentLevel();
+    const allowConsole = await obj.getConsole();
 
     if (allowConsole && current !== undefined && level >= current) {
       switch (level) {

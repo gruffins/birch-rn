@@ -34,17 +34,17 @@ export default function App() {
     });
 
     (async () => {
-      setDebug(await Birch.debug());
-      setLevel(await Birch.level());
-      setConsoleLog(await Birch.console());
-      setRemote(await Birch.remote());
-      setSynchronous(await Birch.synchronous());
+      setDebug(await Birch.getDebug());
+      setLevel(await Birch.getLevel());
+      setConsoleLog(await Birch.getConsole());
+      setRemote(await Birch.getRemote());
+      setSynchronous(await Birch.getSynchronous());
     })();
   }, [setDebug, setLevel, setConsoleLog, setRemote, setSynchronous]);
 
   const toggleDebug = useCallback(
     async (_e: GestureResponderEvent) => {
-      const value = await Birch.debug();
+      const value = await Birch.getDebug();
       Birch.setDebug(!value);
       setDebug(!value);
     },
@@ -53,7 +53,7 @@ export default function App() {
 
   const toggleLevel = useCallback(
     async (_e: GestureResponderEvent) => {
-      const value = await Birch.level();
+      const value = await Birch.getLevel();
       switch (value) {
         case Level.Trace:
           Birch.setLevel(Level.Debug);
@@ -90,7 +90,7 @@ export default function App() {
 
   const toggleConsole = useCallback(
     async (_e: GestureResponderEvent) => {
-      const value = await Birch.console();
+      const value = await Birch.getConsole();
       Birch.setConsole(!value);
       setConsoleLog(!value);
     },
@@ -99,7 +99,7 @@ export default function App() {
 
   const toggleRemote = useCallback(
     async (_e: GestureResponderEvent) => {
-      const value = await Birch.remote();
+      const value = await Birch.getRemote();
       Birch.setRemote(!value);
       setRemote(!value);
     },
@@ -108,7 +108,7 @@ export default function App() {
 
   const toggleSynchronous = useCallback(
     async (_e: GestureResponderEvent) => {
-      const value = await Birch.synchronous();
+      const value = await Birch.getSynchronous();
       Birch.setSynchronous(!value);
       setSynchronous(!value);
     },
@@ -136,7 +136,7 @@ export default function App() {
   }, []);
 
   const printCurrentLevel = useCallback(async (_e: GestureResponderEvent) => {
-    console.log(await Birch.currentLevel());
+    console.log(await Birch.getCurrentLevel());
   }, []);
 
   return (
